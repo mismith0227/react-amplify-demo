@@ -18,3 +18,8 @@ export type CreateParams = {
 export type DeleteParams = {
   id: string
 }
+
+export type FormState = {
+  title: string
+  content: string
+}

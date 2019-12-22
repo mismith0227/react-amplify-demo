@@ -1,38 +1,22 @@
 import * as React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import useForm from 'react-hook-form'
 import { actions as noteActions } from 'store/modules/Note'
 import Text from 'components/atoms/Text'
 import { State } from 'types/redux'
 
 interface HomeProps {}
 
-type FormState = {
-  title: string
-  content: string
-}
-
 const Home: React.FC<HomeProps> = () => {
   const dispatch = useDispatch()
   const user = useSelector((state: State) => state.auth.info)
   const notes = useSelector((state: State) => state.note.entities)
+  const { register, handleSubmit, errors } = useForm()
 
-  const [input, setInput] = React.useState<FormState>({
-    title: '',
-    content: '',
-  })
-
-  const onFormChange = ({
-    target: { name, value },
-  }: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(prev => ({ ...prev, [name]: value }))
-  }
-
-  const onPost = () => {
-    if (input.title === '' || input.content === '') return
-    setInput({ title: '', content: '' })
-
+  const onPost = (data: any) => {
+    console.log(data)
     if (user) {
-      dispatch(noteActions.createNote(input.title, input.content, user.username))
+      dispatch(noteActions.createNote(data))
     }
   }
 
@@ -46,18 +30,20 @@ const Home: React.FC<HomeProps> = () => {
 
   return (
     <div className="Home">
-      <div>
-        <div>
-          タイトル
-          <input value={input.title} name="title" onChange={onFormChange} />
-        </div>
-        <div>
-          内容
-          <input value={input.content} name="content" onChange={onFormChange} />
-        </div>
-        <button onClick={onPost}>追加</button>
-      </div>
       {user && <div>{user.username}</div>}
+
+      <form onSubmit={handleSubmit(onPost)}>
+        <div>
+          <input name="title" ref={register({ required: true })} />
+          {errors.title && 'title is required.'}
+        </div>
+        <div>
+          <input name="content" ref={register({ required: true })} />
+          {errors.content && 'content is required.'}
+        </div>
+
+        <button onClick={handleSubmit(onPost)}>追加</button>
+      </form>
 
       <Text>ログインしました</Text>
 

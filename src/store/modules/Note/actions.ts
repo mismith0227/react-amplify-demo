@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes'
-import { Note } from './types'
+import { Note, FormState } from './types'
 
 export interface Actions {
   readonly [actionTypes.LIST]: ReturnType<typeof listNote>
@@ -15,9 +15,9 @@ export interface Actions {
 
 export type Action = Actions[keyof Actions]
 
-export const createNote = (title: string, content: string, owner: string) => ({
+export const createNote = (data: FormState) => ({
   type: actionTypes.CREATE,
-  payload: { title, content, owner },
+  payload: data,
 })
 
 export const createDone = (createNote: Note) => ({
