@@ -7,7 +7,6 @@ import { LOGIN } from '../actionTypes'
 function* login({ payload }: Actions[typeof LOGIN]): SagaIterator {
   try {
     const data = yield call(loginService, payload)
-    console.log(data)
     yield put(loginDone(data))
   } catch (e) {
     yield put(loginFail(e))

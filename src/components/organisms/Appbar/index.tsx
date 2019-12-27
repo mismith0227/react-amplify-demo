@@ -1,30 +1,14 @@
 import * as React from 'react'
-import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { actions as authActions } from 'store/modules/Auth'
+import { Wrap } from './styles'
 
 const AppBar: React.FC = () => {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
-  const onLogout = () => {
-    dispatch(authActions.logout())
-  }
+  // const onLogout = () => {
+  //   dispatch(authActions.logout())
+  // }
 
-  return (
-    <div className="AppBar">
-      <div>
-        <ul>
-          <li>
-            <Link to="/home">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li onClick={onLogout}>ログアウト</li>
-        </ul>
-      </div>
-    </div>
-  )
+  return <Wrap>appbar</Wrap>
 }
 
 export default AppBar

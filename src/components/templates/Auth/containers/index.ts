@@ -31,7 +31,6 @@ const containers = compose(
     },
     componentDidUpdate() {
       if (!this.props.auth.loading && this.props.auth.info) {
-        console.log(this.props.auth)
         this.props.pushAuth()
       }
     },
