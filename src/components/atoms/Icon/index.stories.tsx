@@ -7,6 +7,7 @@ import { px2rem } from 'styles/utils'
 import AccountIcon from './AccountIcon'
 import ArrowIcon from './ArrowIcon'
 import DocumentIcon from './DocumentIcon'
+import PencilIcon from './PencilIcon'
 
 const Wrapper = styled.div`
   display: flex;
@@ -47,6 +48,7 @@ components
         {renderIcon(AccountIcon)}
         {renderIcon(ArrowIcon)}
         {renderIcon(DocumentIcon)}
+        {renderIcon(PencilIcon)}
       </Wrapper>
     )
   })

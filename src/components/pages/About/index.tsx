@@ -13,7 +13,7 @@ const About: React.FC = () => {
   }
 
   return (
-    <div className="About">
+    <div>
       <div>About</div>
       {user && <div>{user.username}</div>}
       <Button level={3} onClick={() => onLogout()}>

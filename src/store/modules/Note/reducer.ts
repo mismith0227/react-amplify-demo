@@ -5,13 +5,13 @@ import { Note } from './types'
 
 export interface State {
   readonly entities: { readonly [id: string]: Note }
-  readonly loading: { readonly [requestType: string]: boolean }
+  readonly loading: boolean
   readonly failed: { readonly [requestType: string]: boolean }
 }
 
 export const initialState: State = {
   entities: {},
-  loading: {},
+  loading: false,
   failed: {},
 }
 
@@ -20,6 +20,11 @@ export const reducer: Reducer<State, Action> = (
   action
 ) => {
   switch (action.type) {
+    case actionTypes.CREATE:
+      return {
+        ...state,
+        loading: true,
+      }
     case actionTypes.LIST_DONE:
       return {
         ...state,
@@ -39,6 +44,7 @@ export const reducer: Reducer<State, Action> = (
           ...state.entities,
           [action.payload.id]: action.payload,
         },
+        loading: false,
       }
 
     case actionTypes.DELETE_DONE:

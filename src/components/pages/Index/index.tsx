@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const Index: React.FC = () => {
   return (
-    <div className="Index">
+    <div>
       <Link to="/login">Login</Link>
       <div>Index</div>
     </div>

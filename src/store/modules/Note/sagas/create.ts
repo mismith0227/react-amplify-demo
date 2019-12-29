@@ -5,6 +5,7 @@ import { create as createNote } from '../api/create'
 import { CREATE } from '../actionTypes'
 import { CreateNoteMutationVariables } from 'API'
 import { selectors as authSelectors } from 'store/modules/Auth'
+import { push } from 'connected-react-router'
 
 function* create({ payload }: Actions[typeof CREATE]): SagaIterator {
   try {
@@ -17,6 +18,7 @@ function* create({ payload }: Actions[typeof CREATE]): SagaIterator {
     }
     const { data } = yield call(createNote, newPost)
     yield put(createDone(data.createNote))
+    yield put(push('/home'))
   } catch (e) {
     yield put(createFail(e))
   }

@@ -8,6 +8,7 @@ import { Props } from '../types'
 import DocumentIcon from 'components/atoms/Icon/DocumentIcon'
 import AccountIcon from 'components/atoms/Icon/AccountIcon'
 import ArrowIcon from 'components/atoms/Icon/ArrowIcon'
+import PencilIcon from 'components/atoms/Icon/PencilIcon'
 import { Wrap, Content, FooterMenu } from './styles'
 
 const AuthTemplate: React.FC<Props> = ({ route, auth }: Props) => {
@@ -32,6 +33,13 @@ const AuthTemplate: React.FC<Props> = ({ route, auth }: Props) => {
               onClick={() => dispatch(push('/home'))}
             >
               home
+            </SidebarItem>
+            <SidebarItem
+              isOpen={isOpen}
+              icon={<PencilIcon />}
+              onClick={() => dispatch(push('/note/new'))}
+            >
+              New
             </SidebarItem>
             <SidebarItem
               isOpen={isOpen}
