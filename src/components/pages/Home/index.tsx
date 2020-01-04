@@ -1,14 +1,17 @@
 import * as React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { actions as noteActions } from 'store/modules/Note'
+import {
+  actions as noteActions,
+  selectors as notesSelectors,
+} from 'store/modules/Note'
 import Text from 'components/atoms/Text'
-import { State } from 'types/redux'
+import NoteList from 'components/organisms/NoteList'
 
 interface HomeProps {}
 
 const Home: React.FC<HomeProps> = () => {
   const dispatch = useDispatch()
-  const notes = useSelector((state: State) => state.note.entities)
+  const noteList = useSelector(notesSelectors.entitiesListAll)
 
   const onDelete = (id: string) => {
     dispatch(noteActions.deleteNote(id))
@@ -21,19 +24,9 @@ const Home: React.FC<HomeProps> = () => {
   return (
     <div>
       <Text>ログインしました</Text>
-
-      <div>
-        {notes &&
-          Object.keys(notes).map((id: string) => {
-            return (
-              <div key={notes[id].id}>
-                <h4>{notes[id].title}</h4>
-                <p>{notes[id].content}</p>
-                <button onClick={() => onDelete(notes[id].id)}>削除</button>
-              </div>
-            )
-          })}
-      </div>
+      {noteList.length !== 0 && (
+        <NoteList notes={noteList} deleteNote={onDelete} />
+      )}
     </div>
   )
 }

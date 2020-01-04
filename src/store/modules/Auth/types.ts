@@ -9,8 +9,6 @@ export interface User {
   }
 }
 
-
-
 export type LoginParams = {
   userName: string
   password: string

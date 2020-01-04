@@ -6,11 +6,15 @@ export type CreateNoteInput = {
   title: string,
   content: string,
   owner: string,
+  updatedAt?: string | null,
+  createdAt?: string | null,
 };
 
 export type ModelNoteConditionInput = {
   title?: ModelStringInput | null,
   content?: ModelStringInput | null,
+  updatedAt?: ModelStringInput | null,
+  createdAt?: ModelStringInput | null,
   and?: Array< ModelNoteConditionInput | null > | null,
   or?: Array< ModelNoteConditionInput | null > | null,
   not?: ModelNoteConditionInput | null,
@@ -61,6 +65,8 @@ export type UpdateNoteInput = {
   title?: string | null,
   content?: string | null,
   owner?: string | null,
+  updatedAt?: string | null,
+  createdAt?: string | null,
 };
 
 export type DeleteNoteInput = {
@@ -72,6 +78,8 @@ export type ModelNoteFilterInput = {
   title?: ModelStringInput | null,
   content?: ModelStringInput | null,
   owner?: ModelStringInput | null,
+  updatedAt?: ModelStringInput | null,
+  createdAt?: ModelStringInput | null,
   and?: Array< ModelNoteFilterInput | null > | null,
   or?: Array< ModelNoteFilterInput | null > | null,
   not?: ModelNoteFilterInput | null,
@@ -93,6 +101,22 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null,
 };
 
+export type ModelStringKeyConditionInput = {
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+};
+
+export enum ModelSortDirection {
+  ASC = "ASC",
+  DESC = "DESC",
+}
+
+
 export type CreateNoteMutationVariables = {
   input: CreateNoteInput,
   condition?: ModelNoteConditionInput | null,
@@ -105,6 +129,8 @@ export type CreateNoteMutation = {
     title: string,
     content: string,
     owner: string,
+    updatedAt: string | null,
+    createdAt: string | null,
   } | null,
 };
 
@@ -120,6 +146,8 @@ export type UpdateNoteMutation = {
     title: string,
     content: string,
     owner: string,
+    updatedAt: string | null,
+    createdAt: string | null,
   } | null,
 };
 
@@ -135,6 +163,8 @@ export type DeleteNoteMutation = {
     title: string,
     content: string,
     owner: string,
+    updatedAt: string | null,
+    createdAt: string | null,
   } | null,
 };
 
@@ -149,6 +179,8 @@ export type GetNoteQuery = {
     title: string,
     content: string,
     owner: string,
+    updatedAt: string | null,
+    createdAt: string | null,
   } | null,
 };
 
@@ -167,6 +199,33 @@ export type ListNotesQuery = {
       title: string,
       content: string,
       owner: string,
+      updatedAt: string | null,
+      createdAt: string | null,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
+export type ListNotesSortedByCreatedAtQueryVariables = {
+  owner?: string | null,
+  createdAt?: ModelStringKeyConditionInput | null,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelNoteFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListNotesSortedByCreatedAtQuery = {
+  listNotesSortedByCreatedAt:  {
+    __typename: "ModelNoteConnection",
+    items:  Array< {
+      __typename: "Note",
+      id: string,
+      title: string,
+      content: string,
+      owner: string,
+      updatedAt: string | null,
+      createdAt: string | null,
     } | null > | null,
     nextToken: string | null,
   } | null,
@@ -183,6 +242,8 @@ export type OnCreateNoteSubscription = {
     title: string,
     content: string,
     owner: string,
+    updatedAt: string | null,
+    createdAt: string | null,
   } | null,
 };
 
@@ -197,6 +258,8 @@ export type OnUpdateNoteSubscription = {
     title: string,
     content: string,
     owner: string,
+    updatedAt: string | null,
+    createdAt: string | null,
   } | null,
 };
 
@@ -211,5 +274,7 @@ export type OnDeleteNoteSubscription = {
     title: string,
     content: string,
     owner: string,
+    updatedAt: string | null,
+    createdAt: string | null,
   } | null,
 };

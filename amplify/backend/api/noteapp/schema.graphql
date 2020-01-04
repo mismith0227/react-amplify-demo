@@ -1,6 +1,15 @@
-type Note @model @auth(rules: [{allow: owner}]) {
-	id: ID!
-	title: String!
-	content: String!
-	owner: String!
+type Note
+  @model
+  @auth(rules: [{ allow: owner }])
+  @key(
+    name: "SortByCreatedAt"
+    fields: ["owner", "createdAt"]
+    queryField: "listNotesSortedByCreatedAt"
+  ) {
+  id: ID!
+  title: String!
+  content: String!
+  owner: String!
+  updatedAt: AWSDateTime
+  createdAt: AWSDateTime
 }

@@ -7,6 +7,8 @@ export const onCreateNote = `subscription OnCreateNote($owner: String!) {
     title
     content
     owner
+    updatedAt
+    createdAt
   }
 }
 `;
@@ -16,6 +18,8 @@ export const onUpdateNote = `subscription OnUpdateNote($owner: String!) {
     title
     content
     owner
+    updatedAt
+    createdAt
   }
 }
 `;
@@ -25,6 +29,8 @@ export const onDeleteNote = `subscription OnDeleteNote($owner: String!) {
     title
     content
     owner
+    updatedAt
+    createdAt
   }
 }
 `;

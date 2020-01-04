@@ -7,6 +7,8 @@ export const getNote = `query GetNote($id: ID!) {
     title
     content
     owner
+    updatedAt
+    createdAt
   }
 }
 `;
@@ -21,6 +23,36 @@ export const listNotes = `query ListNotes(
       title
       content
       owner
+      updatedAt
+      createdAt
+    }
+    nextToken
+  }
+}
+`;
+export const listNotesSortedByCreatedAt = `query ListNotesSortedByCreatedAt(
+  $owner: String
+  $createdAt: ModelStringKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelNoteFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listNotesSortedByCreatedAt(
+    owner: $owner
+    createdAt: $createdAt
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      title
+      content
+      owner
+      updatedAt
+      createdAt
     }
     nextToken
   }

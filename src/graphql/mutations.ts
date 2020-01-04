@@ -10,6 +10,8 @@ export const createNote = `mutation CreateNote(
     title
     content
     owner
+    updatedAt
+    createdAt
   }
 }
 `;
@@ -22,6 +24,8 @@ export const updateNote = `mutation UpdateNote(
     title
     content
     owner
+    updatedAt
+    createdAt
   }
 }
 `;
@@ -34,6 +38,8 @@ export const deleteNote = `mutation DeleteNote(
     title
     content
     owner
+    updatedAt
+    createdAt
   }
 }
 `;

@@ -1,10 +1,12 @@
-import { CreateNoteInput } from 'API'
+import { CreateNoteInput, UpdateNoteInput } from 'API'
 
 export interface Note {
   id: string
   title: string
-  content: string | null
+  content: string
   owner: string
+  createdAt: string
+  updatedAt: string
 }
 
 export interface NoteState {
@@ -15,11 +17,16 @@ export type CreateParams = {
   input: CreateNoteInput
 }
 
-export type DeleteParams = {
+export type UpdateParams = {
+  input: UpdateNoteInput
+}
+
+export type NoteId = {
   id: string
 }
 
 export type FormState = {
+  id: string
   title: string
   content: string
 }

@@ -18,7 +18,12 @@ interface FormData {
   content: string
 }
 
-const NoteForm: React.FC<Props> = ({ mode, defaultName, defaultContent }) => {
+const NoteForm: React.FC<Props> = ({
+  mode,
+  defaultName,
+  defaultContent,
+  noteId,
+}) => {
   const dispatch = useDispatch()
   const { register, handleSubmit, errors, formState } = useForm<FormData>({
     mode: 'onChange',
@@ -30,6 +35,15 @@ const NoteForm: React.FC<Props> = ({ mode, defaultName, defaultContent }) => {
 
   const onPost = (data: any) => {
     dispatch(noteActions.createNote(data))
+  }
+
+  const onEdit = (data: any) => {
+    dispatch(
+      noteActions.updateNote({
+        ...data,
+        id: noteId,
+      })
+    )
   }
 
   return (
@@ -50,7 +64,11 @@ const NoteForm: React.FC<Props> = ({ mode, defaultName, defaultContent }) => {
           </Button>
         )}
 
-        {mode === 'edit' && <Button>更新</Button>}
+        {mode === 'edit' && (
+          <Button onClick={handleSubmit(onEdit)} disabled={!formState.isValid}>
+            更新
+          </Button>
+        )}
       </Footer>
     </Wrap>
   )
