@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { SidebarItem } from 'components/organisms/Sidebar'
 
 export const Wrap = styled.div`
   display: flex;
@@ -12,8 +11,4 @@ export const Content = styled.div`
   flex-direction: column;
   flex: 1;
   height: 100vh;
-`
-
-export const FooterMenu = styled(SidebarItem)`
-  margin-top: auto;
 `

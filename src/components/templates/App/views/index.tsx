@@ -21,7 +21,7 @@ const AuthTemplate: React.FC<Props> = ({ route, auth }: Props) => {
   }
 
   return (
-    <Wrap className="AuthTemplate">
+    <Wrap>
       {auth.loading ? (
         <div>loading</div>
       ) : (

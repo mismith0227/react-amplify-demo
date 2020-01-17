@@ -7,6 +7,8 @@ import {
 import Text from 'components/atoms/Text'
 import NoteList from 'components/organisms/NoteList'
 
+import { Wrap } from './styles'
+
 interface HomeProps {}
 
 const Home: React.FC<HomeProps> = () => {
@@ -22,12 +24,12 @@ const Home: React.FC<HomeProps> = () => {
   }, [dispatch])
 
   return (
-    <div>
+    <Wrap>
       <Text>ログインしました</Text>
       {noteList.length !== 0 && (
         <NoteList notes={noteList} deleteNote={onDelete} />
       )}
-    </div>
+    </Wrap>
   )
 }
 

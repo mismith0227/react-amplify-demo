@@ -1,3 +1,5 @@
+import SignUp from 'components/pages/SignUp/'
+import ConfirmSignUp from 'components/pages/ConfirmSignUp/'
 import Login from 'components/pages/Login/'
 import Index from 'components/pages/Index/'
 import Home from 'components/pages/Home/'
@@ -12,6 +14,28 @@ const routes = [
     path: '/',
     exact: true,
     component: Index,
+  },
+  {
+    path: '/signup',
+    component: templates.Auth,
+    routes: [
+      {
+        path: '/signup',
+        exact: true,
+        component: SignUp,
+      },
+    ],
+  },
+  {
+    path: '/confirmsignup',
+    component: templates.Auth,
+    routes: [
+      {
+        path: '/confirmsignup',
+        exact: true,
+        component: ConfirmSignUp,
+      },
+    ],
   },
   {
     path: '/login',
